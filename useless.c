@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);       
     }
 	
-//	printf("%d\n",plan_sort(argv[1]));
+	printf("%d\n",plan_sort(argv[1]));
 	
 	return 0;
 }
@@ -48,10 +48,10 @@ int  plan_sort(const char *path) {
 	int retStatus = 0 ,temp = 0, file = 0;
 	
 	mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
-	file = creat("./useless_plan[sorted].txt", mode);					
+	file = creat("/tmp/useless_plan[sorted].txt", mode);					
 																		
 	if (file == -1) {
-		printf("Failed to create file \"./useless_plan[sorted].txt\".\nReason: %s.\n", strerror(errno));
+		printf("Failed to create file \"/tmp/useless_plan[sorted].txt\".\nReason: %s.\n", strerror(errno));
 		exit(EXIT_FAILURE);
 	}
 	
@@ -64,7 +64,7 @@ int  plan_sort(const char *path) {
 				break;
 				
 			case 0:
-				temp = execlp("sort", "sort", "-k1", path, "-o", "./useless_plan[sorted].txt", (char *)0);
+				temp = execlp("sort", "sort", "-k1", path, "-o", "/tmp/useless_plan[sorted].txt", (char *)0);
 				if (temp == -1) {
 					printf("Something wrong with exelp()\nReason: %s\n", strerror(errno));
 					exit(EXIT_FAILURE);
